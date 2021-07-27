@@ -1,0 +1,23 @@
+{
+    "type": "record",
+    "name": "StoreMe",
+    "namespace": "com.vlad.avro",
+    "fields": [
+      {
+        "name": "Foo",
+        "type": [
+          "null",
+          "int"
+        ],
+        "default": null
+      },
+      {
+        "name": "Bar",
+        "type": [
+          "null",
+          "string"
+        ],
+        "default": null
+      }
+    ]
+}
