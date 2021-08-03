@@ -5,6 +5,8 @@ from confluent_kafka.schema_registry.avro import AvroSerializer
 from confluent_kafka.serialization import StringSerializer
 import time
 
+time.sleep(15)
+print('15 seconds passed')
 
 schema = avro.schema.parse(open("record.avsc").read())
 schema_registry_conf = {'url': 'http://schema-registry:8081'}
@@ -27,6 +29,5 @@ while True:
     producer.produce(topic='test-topic', value={"Foo": i, "Bar": str(i + 1)})
     print('produced', i + 1, 'record')
     producer.flush(3)
-    time.sleep(1)
+    time.sleep(3)
     i += 1
-

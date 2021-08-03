@@ -1,10 +1,14 @@
+import time
 import avro.schema
 from confluent_kafka import DeserializingConsumer
 from confluent_kafka.schema_registry import SchemaRegistryClient
 from confluent_kafka.schema_registry.avro import AvroDeserializer
 
+time.sleep(20)
+print('20 seconds passed')
+
 schema = avro.schema.parse(open("record.avsc").read())
-schema_registry_conf = {'url': 'http://localhost:8081'}
+schema_registry_conf = {'url': 'http://schema-registry:8081'}
 schema_registry_client = SchemaRegistryClient(schema_registry_conf)
 
 avro_deserializer = AvroDeserializer(
@@ -13,7 +17,7 @@ avro_deserializer = AvroDeserializer(
 )
 
 consumer_conf = {
-    'bootstrap.servers': 'localhost:9092',
+    'bootstrap.servers': 'kafka:9092',
     'group.id': 'Foo',
     'key.deserializer': avro_deserializer,
     'value.deserializer': avro_deserializer
